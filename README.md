@@ -22,6 +22,9 @@ To use libbbgpio, link it to the program you're compiling:
 gcc yourfile.c /path/to/lib/libbbgpio.a
 ```
 
+### Documentation:
+https://github.com/DIYElectronics/bbgpio/blob/master/documentation.md
+
 ### Functionality:
 bbgpio is currently limited to enabling, disabling, reading, and writing GPIO pins.
 

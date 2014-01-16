@@ -60,10 +60,23 @@ int unexport_gpio_pin(unsigned int pin)
 int get_pin_value(unsigned int pin, unsigned int* val)
 {
 	FILE* pin_file;
-	char pin_path[MAX_STRLEN];
-	snprintf(pin_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
+	char pin_direction_path[MAX_STRLEN];
+	char pin_value_path[MAX_STRLEN];
+	snprintf(pin_direction_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/direction", pin);
+	snprintf(pin_value_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
 
-	pin_file = fopen(pin_path, "r");
+	pin_file = fopen(pin_direction_path, "a");
+
+	if (pin_file == NULL)
+	{
+		return ERR_GET_PIN_VALUE;
+	}
+
+	fputs("high", pin_file);
+
+	fclose(pin_file);
+
+	pin_file = fopen(pin_value_path, "r");
 
 	if (pin_file == NULL)
 	{
@@ -94,10 +107,23 @@ int get_pin_value(unsigned int pin, unsigned int* val)
 int set_pin_value(unsigned int pin, unsigned int val)
 {
 	FILE* pin_file;
-	char pin_path[MAX_STRLEN];
-	snprintf(pin_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
+	char pin_direction_path[MAX_STRLEN];
+	char pin_value_path[MAX_STRLEN];
+	snprintf(pin_direction_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/direction", pin);
+	snprintf(pin_value_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
 
-	pin_file = fopen(pin_path, "a");
+	pin_file = fopen(pin_direction_path, "a");
+
+	if (pin_file == NULL)
+	{
+		return ERR_GET_PIN_VALUE;
+	}
+
+	fputs("in", pin_file);
+
+	fclose(pin_file);
+
+	pin_file = fopen(pin_value_path, "a");
 
 	if (pin_file == NULL)
 	{

@@ -60,9 +60,7 @@ int unexport_gpio_pin(unsigned int pin)
 int get_pin_value(unsigned int pin, unsigned int* val)
 {
 	FILE* pin_file;
-	char pin_direction_path[MAX_STRLEN];
 	char pin_value_path[MAX_STRLEN];
-	snprintf(pin_direction_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/direction", pin);
 	snprintf(pin_value_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
 
 	pin_file = fopen(pin_value_path, "r");

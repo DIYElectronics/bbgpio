@@ -65,17 +65,6 @@ int get_pin_value(unsigned int pin, unsigned int* val)
 	snprintf(pin_direction_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/direction", pin);
 	snprintf(pin_value_path, MAX_STRLEN, GPIO_ROOT_DIR "gpio%d/value", pin);
 
-	pin_file = fopen(pin_direction_path, "a");
-
-	if (pin_file == NULL)
-	{
-		return ERR_GET_PIN_VALUE;
-	}
-
-	fputs("high", pin_file);
-
-	fclose(pin_file);
-
 	pin_file = fopen(pin_value_path, "r");
 
 	if (pin_file == NULL)
@@ -119,7 +108,7 @@ int set_pin_value(unsigned int pin, unsigned int val)
 		return ERR_GET_PIN_VALUE;
 	}
 
-	fputs("in", pin_file);
+	fputs("high", pin_file);
 
 	fclose(pin_file);
 

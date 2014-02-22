@@ -7,7 +7,8 @@ GPIO pins on BeagleBone devices.
 Although it was written with the BeagleBone Black in mind, it should work with similar devices.
 
 ### Compilation and usage:
-To compile bbgpio into a static library, simply run
+To compile bbgpio into a static library, simply run the following from your BeagleBone's shell:
+
 ```
 git clone http://github.com/DIYElectronics/bbgpio
 cd bbgpio
@@ -32,3 +33,4 @@ I intend to add more complex functionality later.
 
 ### License:
 bbgpio is released under the MIT License.
+See the 'LICENSE' file for the exact text.
